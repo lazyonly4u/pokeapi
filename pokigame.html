@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokiGame</title>
+    <link rel="stylesheet" href="pokigame.css">
+</head>
+<body>
+    <!-- intro screen -->
+    <div class="intro">
+        <img class="hero-bg" src="loadingintroscreenbckup.gif" alt="intro">
+        <img id="startBtn" class="start-btn" src="start.png" alt="Start">
+        
+    </div>
+
+     <!-- menu -->
+    <div class="menu hidden">
+        <img class="menu-bg" src="menu-bg.jpg" alt="menu background">
+        <h1>Menu</h1>
+        <img id="pokedex-btn" class="pokedex-btn" src="pokedex.png" alt="pokedex">       
+        <img id="play-btn" class="play-btn" src="play.png" alt="Play">       
+        <img id="exit-btn" class="exit-btn" src="exit.png" alt="Exit">
+     
+    </div>
+    <div class="load hidden">
+        <img class="loadpokedexbg" src="loadpokedexbg.png" alt="load pokedex background">
+        <img class="loadPokedexroll" src="loadpokedexroll.png" alt="Pokedexroll">
+        
+    </div>
+    <!-- game area -->
+    <div class="game-area hidden">
+        <img class="game-bg" src="gamebg.png" alt="game background">
+        <img class="welcome-banner" src="welcome-banner.png" alt="welcome banner">
+        <img class="to-banner" src="to-banner.png" alt="to banner">
+        <img class="pokigame-banner" src="pokigame-banner.png" alt="pokigame banner">
+        <div class="gamebtn">
+            <img id="storymodebtn" class="storymode-btn" src="storymode.png" alt="Story Mode">
+            <img class="pinkline" src="pinkline.png" alt="pink line">
+            <img id="randomisedbtn" class="randomised-btn" src="randomised.png" alt="Randomised">
+            <img class="purpleline" src="purpleline.png" alt="purple line">
+            <img id="backbtn" class="back-btn" src="back.png" alt="Back">
+        </div>
+    </div>
+
+    <!--storymodemenu-->
+    <div class="storymodemenu hidden">
+        <img class="storymenubg"src="storymenubg.png" alt="story menubg">
+        <img id ="introbtn" class="introbtn" src="intro.png" alt="intro">
+        <img id="skipbtn" class="skipbtn" src="skip.png" alt="skip">
+        <img id="backstorymenu" class="backstorymenu" src="back.png" alt="back">
+
+    </div>
+    <!--storymode-->
+    <div class="storymodeArea hidden">
+        <img class="professorbg" src="Professorbg.png" alt="professor background">
+        <img class="professorfloor" src="Professorfloor.png" alt="professor floor">
+        <img class="professor" src="Professor.png" alt="professor">
+        <img id="backbtnstorymode" class="back-btn-storymode" src="back.png" alt="Back">
+        <img id="nextbtnstorymode" class="next-btn-storymode" src="next.png" alt="Next">
+
+        <div id="storymodeText" class="storymodeText ">
+            <span>Welcome to PokiGame!</span><br><br>
+            <span>Your adventure begins here. You will live and experience life as ash ketchup and relive main battles<br>
+            ...I hope you know how the story goes!</span><br><br>
+            <span>I will follow you and fill in the gaps along the way!</span>
+        </div>
+
+        <div id="storyintrobattletext" class="storyintrobattletext hidden">
+            <span>The next press button will show you all the levels. There will be 12 levels in total</span><br><br>
+            <span>You can either choose the level by random and read the story of and for that level</span><br>
+            <span>or you can follow it properly and get a proper summary of ash ketchup's battle life by going in numerical order</span>
+        </div>
+
+        <div id="BeforetheFirst" class="BeforetheFirst hidden">
+            <span>Ash Ketchum starts his Pokémon journey in Pallet Town with Pikachu as his first Pokémon. </span>
+            <span>After early challenges learning to bond with Pikachu and understanding what it means to be a Trainer.</span>
+            <span>Ash sets out toward Pewter City to begin his path as a Pokémon Trainer and earn his first Gym Badge.</span>
+        
+        </div>
+        <div id="1.BattleSummary" class="1.BattleSummary hidden">
+            <span>Ash faces Brock, Pewter City’s Rock-type Gym Leader, using Pikachu against Brock’s Geodude and Onix.</span>
+            <span>Despite struggling at first, Ash uses the environment and Pikachu’s electricity to his advantage, leading to his first Gym victory.</span>
+        </div>
+        <div id="1.Aftermath" class="1.Aftermath hidden">
+            <span>Brock decides to travel with Ash, inspired by his passion and determination.</span>
+            <span>Together, they leave Pewter City with Misty, forming the core trio that continues through Kanto and beyond.</span>
+        </div>
+        <div id="2.BattleSummary" class="2.BattleSummary hidden">
+            <span>Now in the Johto region, Ash challenges Falkner, the Flying-type Gym Leader.</span>
+            <span>Using strong teamwork and strategy, Ash defeats Falkner’s Pidgey, Hoothoot, and Pidgeot, showing how much he’s grown as a Trainer.</span>
+        </div>
+        <div id="2.Aftermath" class="2.Aftermath hidden">
+            <span>Ash earns his Zephyr Badge and continues through Johto, meeting new friends and rivals like Casey.</span>
+            <span>He later prepares for future Gym challenges with greater confidence and experience.</span>
+        </div>
+        <div id="3.BattleSummary" class="3.BattleSummary hidden">
+            <span>In his first Hoenn Gym battle, Ash faces Roxanne’s Rock-types—Geodude and Nosepass.</span>
+            <span>Though inexperienced with Hoenn’s Pokémon, Ash’s Taillow and Treecko put up a great fight, and Pikachu’s determination helps him clinch the win.</span>
+        </div>
+        <div id="3.Aftermath" class="3.Aftermath hidden">
+            <span>Ash gains the Stone Badge and continues exploring Hoenn, meeting new companions May and Max.</span>
+            <span>He develops a deeper understanding of Pokémon battles and strategy.</span>
+        </div>
+        <div id="4.BattleSummary" class="4.BattleSummary hidden">
+            <span>A rare double battle against the twin Gym Leaders Tate and Liza takes place in Mossdeep City.</span>
+            <span>They use Solrock and Lunatone, while Ash teams up with Pikachu and Swellow, relying on quick thinking and coordination to overcome their psychic strategy.</span>
+        </div>
+        <div id="4.Aftermath" class="4.Aftermath hidden">
+            <span>Ash earns the Mind Badge, proving his ability to handle complex battles.</span>
+            <span>He grows closer to his team and sets his sights on the Hoenn League, solidifying his partnership with his Pokémon.</span>
+        </div>
+        <div id="5.BattleSummary" class="5.BattleSummary hidden">
+            <span>Ash faces Maylene, the Fighting-type Gym Leader of Veilstone Gym, in a powerful match featuring Lucario vs Buizel.</span>
+            <span>Both Trainers show great respect and determination, pushing each other to their limits.</span>
+        </div>
+        <div id="5.Aftermath" class="5.Aftermath hidden">
+            <span>After earning the Cobble Badge, Ash continues his Sinnoh journey with renewed focus.</span>
+            <span>He faces rivals like Paul and learns deeper lessons about battling style and emotional strength.</span>
+        </div>
+        <div id="6.BattleSummary" class="6.BattleSummary hidden">
+            <span>Ash battles his friend Clemont, who is also the Electric-type Gym Leader of Lumiose City.</span>
+            <span>It’s a heartfelt battle between friends, featuring Magneton, Heliolisk, and Luxray against Ash’s team.</span>
+            <span>The fight showcases Clemont’s inventions and Ash’s growth.</span>
+        </div>
+        <div id="6.Aftermath" class="6.Aftermath hidden">
+            <span>Ash wins the Voltage Badge, but more importantly, both he and Clemont strengthen their bond and respect for each other.</span>
+            <span>Ash continues toward the Kalos League with Serena and Bonnie, carrying lessons about friendship and perseverance.</span>
+        </div>
+        <div id="7.BattleSummary" class="7.BattleSummary hidden">
+            <span>Ash faces Kahuna Hala in a Grand Trial on Melemele Island, using Crabrawler and Hariyama.</span>
+            <span>Ash wins using his first Z-Move, showing mastery of Alola’s battle style.</span>
+        </div>
+        <div id="7.Aftermath" class="7.Aftermath hidden">
+            <span>Ash earns his first Grand Trial stamp, deepening his bond with his Pokémon and understanding of Z-Moves.</span>
+            <span>He continues his Alola journey, meeting more friends and taking on Island Challenges.</span>
+        </div>
+        <div id="8.BattleSummary" class="8.BattleSummary hidden">
+            <span>Ash’s trial against Kahuna Nanu on Ula’ula Island focuses on Dark-type strategy, facing Pokémon like Sableye and Krookodile.</span>
+            <span>The battle tests Ash’s emotional control and adaptability.</span>
+        </div>
+        <div id="8.Aftermath" class="8.Aftermath hidden">
+            <span>Ash earns Nanu’s respect and another Grand Trial victory.</span>
+            <span>He continues his Alola adventure with stronger resolve, leading toward his biggest challenge yet — the Alola League.</span>
+        </div>
+        <div id="9.BattleSummary" class="9.BattleSummary hidden">
+            <span>Ash battles Professor Kukui in the Alola League Finals, where Tapu Koko joins as Kukui’s partner.</span>
+            <span>The match includes Ash’s Lycanroc, Decidueye, and Incineroar.</span>
+            <span>Ash’s Lycanroc wins in an epic finish, making him Champion of Alola.</span>
+        </div>
+        <div id="9.Aftermath" class="9.Aftermath hidden">
+            <span>Ash finally achieves his long-time dream of becoming a regional Champion.</span>
+            <span>He celebrates with his friends and Pokémon, proving his journey of perseverance and growth has paid off.</span>
+            <span>Later, he sets his sights on the World Coronation Series.</span>
+        </div>
+        <div id="10.BattleSummary" class="10.BattleSummary hidden">
+            <span>Ash’s first encounter with World Champion Leon pits his team against Leon’s powerhouse squad, including Gigantamax Charizard and Dragapult.</span>
+            <span>Despite losing, Ash gains inspiration and sets a goal to face Leon again.</span>
+        </div>
+        <div id="10.Aftermath" class="10.Aftermath hidden">
+            <span>Ash travels the world to climb the World Coronation Series ranks, training hard and meeting old friends and new rivals as he works toward the Masters 8.</span>
+        </div>
+        <div id="11.BattleSummary" class="11.BattleSummary hidden">
+            <span>In the climactic Masters 8 Finals, Ash faces Leon once more — the strongest Trainer in the world.</span>
+            <span>With strategic battles, teamwork, and his trademark spirit, Ash’s Pikachu defeats Leon’s Gigantamax Charizard in an emotional finale, making Ash the World Champion.</span>
+        </div>
+        <div id="11.Aftermath" class="11.Aftermath hidden">
+            <span>Ash’s journey reaches its peak — he becomes the best Trainer in the world.</span>
+            <span>He reflects on his adventures, friendships, and the lessons he’s learned.</span>
+            <span>But he still looks to the future with excitement, knowing his journey never truly ends.</span>
+        </div>
+        <div id="12.BattleSummary" class="12.BattleSummary hidden">
+            <span>In their last confrontation, Ash and Pikachu face Team Rocket one final time.</span>
+            <span>Meowth, Jessie, and James use many of their past Pokémon, showing their long history with Ash.</span>
+        </div>
+        <div id="12.Aftermath" class="12.Aftermath hidden">
+            <span>After years of pursuit, Team Rocket parts ways with Ash on bittersweet terms, ending their rivalry.</span>
+            <span>Ash continues his journey, walking down a familiar road — symbolizing that his story, though changed forever, still goes on.</span>
+        </div>
+
+    </div>
+    <!--lvl area-->
+    <div id="lvlarea" class="lvlarea hidden">
+        <img class="lvlareabg" src="lvlareabg.png" alt="lvlerea">
+        <img id="backskipmenu" class="backskipmenu" src="back.png" alt="back">
+
+        <img id="lvl1btn" class="lvl1btn" src="lvl1btn.png" alt="lvl1btn">
+        <img id="lvl2btn" class="lvl2btn" src="lvl2btn.png" alt="lvl2btn">
+        <img id="lvl3btn" class="lvl3btn" src="lvl3btn.png" alt="lvl3btn">
+        <img id="lvl4btn" class="lvl4btn" src="lvl4btn.png" alt="lvl4btn">
+        <img id="lvl5btn" class="lvl5btn" src="lvl5btn.png" alt="lvl5btn">
+        <img id="lvl6btn" class="lvl6btn" src="lvl6btn.png" alt="lvl6btn">
+        <img id="lvl7btn" class="lvl7btn" src="lvl7btn.png" alt="lvl7btn">
+        <img id="lvl8btn" class="lvl8btn" src="lvl8btn.png" alt="lvl8btn">
+        <img id="lvl9btn" class="lvl9btn" src="lvl9btn.png" alt="lvl9btn">
+        <img id="lvl10btn" class="lvl10btn" src="lvl10btn.png" alt="lvl10btn">
+        <img id="lvl11btn" class="lvl11btn" src="lvl11btn.png" alt="lvl11btn">
+        <img id="lvl12btn" class="lvl12btn" src="lvl12btn.png" alt="lvl12btn">
+
+    </div>
+    <!--levels-->
+    <div id="levelone" class="levelone hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="leveltwo" class="leveltwo hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img id="heartbtn" class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelthree" class="levelthree hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelfour" class="levelfour hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelfive" class="levelfive hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelsix" class="levelsix hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelseven" class="levelseven hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="leveleight" class="leveleight hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelnine" class="levelnine hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="levelten" class="levelten hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="leveleleven" class="leveleleven hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+    <div id="leveltwelve" class="leveltwelve hidden">
+        <img class="lvlbg" src="fightarea.jpg" alt="lvlbg">
+        <img class="runbtn" src="runbtn.png" alt="runbtn">
+        <img class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img class="heartbtn" src="heartbtn.png" alt="heartbtn">
+    </div>
+
+    <!--randomisedmode-->
+    <div class="randomisedArea hidden" >        
+        <img id="randombg" class="randombg" src="fightarea.jpg" alt="randombg">
+        <img id="backrandommenu" class="backrandommenu" src="back.png" alt="back">
+        <img id="runbtn" class="runbtn" src="runbtn.png" alt="runbtn">
+        <img id="pokemonbtn" class="pokemonbtn" src="pokemonbtn.png" alt="pokemonbtn">
+        <img id="fightbtn" class="fightbtn" src="fightbtn.png" alt="fightbtn">
+        <img id="heartbtn" class="heartbtn" src="heartbtn.png" alt="heartbtn">
+
+    </div>
+    <!-- Pokedex -->
+        <div class="pokedex hidden">
+            <h1>Pokedex</h1>
+        <div class="pokedex-inner">
+            <input id="pokemonName" type="text" placeholder="Enter Pokémon name or id">
+            <button id="pokedexFetchBtn">Search</button>
+            <button id="closePokedexBtn" class="closePokedex-btn">Close Pokedex</button>
+            <!--<img class="pokedexbg" src="pokedexbg.png" alt="pokedex background">-->
+            <div id="pokedexResult"></div>
+        </div>
+    </div>
+    <!-- Game Over Screen -->
+    <div class="game-over hidden">
+        <h2>Game Over</h2>
+        <button id="restartBtn" class="restart-btn">Restart</button>
+        <button id ="gameBackBtn" class="game-back-btn">Back to Menu</button>
+    </div>
+
+    <script src="pokigame1.js" defer></script>
+
+</body>
+</html>
+

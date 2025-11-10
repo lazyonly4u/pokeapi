@@ -1,0 +1,400 @@
+
+.intro {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.hidden {
+  display: none;
+}
+
+.hero-bg {
+    position: relative;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none; 
+}
+
+.start-btn {
+    position: absolute;
+    z-index: 2;       
+    cursor: pointer;
+    width: 220px;    
+    height: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/*Menu*/
+.menu-bg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none; 
+}
+
+/* menu buttons*/
+.play-btn,
+.exit-btn,
+.pokedex-btn {
+    position:absolute;
+    z-index:2;
+    cursor:pointer;
+    height:auto;
+    user-select:none;
+    -webkit-user-drag:none}
+    .play-btn{position:relative;top:100%;left:6%;transform:translate(-50%,-55%);width:170px}
+    .exit-btn{position:relative;top:100%;left:5%;transform:translate(-50%,-73%);width:130px}
+    .pokedex-btn{position:relative;top:100%;left:4%;transform:translate(-50%,-80%);width:125px}
+
+/* pokedex loading screen — default hidden */
+.load {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background: transparent;
+    display: none;
+}
+
+/* show the loaderwhen hidden is removed */
+.load:not(.hidden) {
+    display: flex;
+}
+
+/* background image */
+.load .loadpokedexbg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* animation for the loader */
+@keyframes spinZoom {
+  0%   { transform: rotate(0deg)   scale(0);   }
+  25%  { transform: rotate(90deg)  scale(15);   }
+  50%  { transform: rotate(180deg) scale(25);   }
+  75%  { transform: rotate(270deg) scale(35);  }
+  100% { transform: rotate(360deg) scale(45);  }
+}
+
+.load .loadPokedexroll {
+    display: block;
+    transform-origin: center center;
+    animation: spinZoom 5s linear infinite;
+    z-index: 1;
+    width: 5500px;
+    height: auto;
+}
+
+/*
+.pokedexbg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none; 
+}*/
+
+/* game area */
+.game-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none; 
+}
+
+/* banners */
+.welcome-banner,
+.to-banner,
+.pokigame-banner {
+    position:absolute;
+    z-index:2;
+    pointer-events: none; 
+    height:auto;}
+    .welcome-banner{top:2%;left:13%;width:500px}
+    .to-banner{top:2%;left:43%;width:250px}
+    .pokigame-banner{top:3%;left:56%;width:500px}
+
+/* Game choice button */
+/* bounce animeation*/
+@keyframes bounce {
+  0%   { transform: translateY(0px);   }
+  50%  { transform: translateY(20px);  }
+  100% { transform: translateY(0px);   }
+} 
+.storymode-btn,
+.back-btn,
+.randomised-btn{
+    position:absolute;
+    z-index:2;
+    cursor:pointer;
+    height:auto;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+.storymode-btn{animation: bounce 3.5s infinite; top:45%;left:5%;width:300px}
+.back-btn{top:92%;left:1%;width:130px}
+.randomised-btn{animation: bounce 3.5s infinite; top:39%;left:78%;width:300px}
+/* colored lines */
+.pinkline,
+.purpleline{
+    position:absolute;
+    z-index:3;
+    pointer-events: none; 
+}
+.pinkline{top:60%;left:8%;width: 200px;}
+.purpleline{top:60%;left:81%;width:200px;}
+
+/* storymode*/
+.storymenubg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none; 
+}
+
+.backstorymenu,
+.skipbtn,
+.introbtn{
+    z-index:3;
+    cursor:pointer;
+    height:auto;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+.introbtn{position:absolute;top:35%;left:5%;width:550px;}
+.skipbtn{position:absolute;top:35%;left:65%;width:550px;}
+.backstorymenu{position: relative;top: 5%;left: 1%;width: 130px;}
+
+.storymodeArea-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+.back-btn-storymode {
+  position: relative;
+  top: 5%;
+  left: 1%;
+  width: 130px;
+  z-index: 3;
+  cursor: pointer;
+}
+/*professor scene*/
+.professorbg{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; 
+    z-index: 0;
+    height: auto;
+    pointer-events: none; 
+}
+.professorfloor{
+    width:95%; 
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    pointer-events: none;
+}
+.professor {
+  width: 70%;
+  z-index: 2;
+  position: absolute;
+  bottom: 15%;
+  left: 49%;
+  transform: translateX(-50%);
+  height: auto;
+  pointer-events: none;
+  animation: profbounce 0.7s forwards; 
+}
+
+@keyframes profbounce {
+  0%   { transform: translateX(-50%) translateY(0px); }
+  50%  { transform: translateX(-50%) translateY(0px); }
+  100% { transform: translateX(-50%) translateY(30px); }
+}
+
+/* story text box */
+.storyintrobattletext,
+.storymodeText {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 20px;
+  font-size: 1.5rem;   
+  text-align: center;
+  z-index: 5;
+  display: block;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: Typing 6s;
+}
+
+
+/*typing animation*/
+@keyframes Typing {
+    from { width: 0; }
+}
+
+.next-btn-storymode {
+    position:absolute;
+    top:87%;
+    left:85%;
+    width:130px;
+    z-index:2;
+    cursor:pointer;
+    height:auto;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+/*lvl area*/
+.backskipmenu {
+  position: relative;
+  top: 5%;
+  left: 1%;
+  width: 130px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.lvlareabg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lvl1btn,
+.lvl2btn,
+.lvl3btn,
+.lvl4btn,
+.lvl5btn,
+.lvl6btn,
+.lvl7btn,
+.lvl8btn,
+.lvl9btn,
+.lvl10btn,
+.lvl11btn,
+.lvl12btn {
+    position: absolute;
+    width: 400px; 
+    height: auto;
+    z-index: 3;
+    cursor: pointer;
+}
+.lvl1btn { top: 5%; left: 5%; }
+.lvl2btn { top: 2%; left: 37%; }
+.lvl3btn { top: 7%; left: 74%; }
+.lvl4btn { top: 25%; left: 2%; }
+.lvl5btn { top: 23%; left: 45%; }
+.lvl6btn { top: 28%; left: 74%; }
+.lvl7btn { top: 50%; left: 12%; }
+.lvl8btn { top: 45%; left: 41%; }
+.lvl9btn { top: 48%; left: 69%; }
+.lvl10btn { top: 77%; left: 6%; }
+.lvl11btn { top: 73%; left: 38%; }
+.lvl12btn { top: 76%; left: 72%; }
+
+.lvlbg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.runbtn,
+.fightbtn,
+.pokemonbtn,
+.heartbtn {
+  position: absolute;
+  width: 285px;
+  height: auto;
+  z-index: 3;
+  cursor: pointer;
+}
+.runbtn{top: 86.93%; left: 66.7%;}
+.fightbtn{ top: 86.93%; left: 49.1%;}
+.pokemonbtn{top: 74.8%; left:49.4%;}
+.heartbtn {top: 74.8%; left: 66.7%;}
+
+/*randomised mode*/
+
+.randombg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backrandommenu {
+  position: relative;
+  top: 5%;
+  left: 1%;
+  width: 130px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.runbtn,
+.fightbtn,
+.pokemonbtn,
+.heartbtn {
+  position: absolute;
+  width: 285px;
+  height: auto;
+  z-index: 3;
+  cursor: pointer;
+}
+.runbtn{top: 86.93%; left: 66.7%;}
+.fightbtn{ top: 86.93%; left: 49.1%;}
+.pokemonbtn{top: 74.8%; left:49.4%;}
+.heartbtn {top: 74.8%; left: 66.7%;}
+
