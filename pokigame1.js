@@ -1,7 +1,12 @@
+// ====================================
+// POKEDEX FETCH FUNCTION
+// ====================================
+// Fetches Pokemon data from PokeAPI and displays sprite, name, ID, and stats
 async function fetchData() {
     const name = document.getElementById("pokemonName")?.value.trim().toLowerCase();
     if (!name) return;
 
+    // Fetch data from PokeAPI
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     if (!res.ok) { alert("Pokemon not found"); return; }
 
@@ -12,6 +17,7 @@ async function fetchData() {
     const apiName = data.name || "";
     const apiId = data.id || "";
 
+    // Create or update Pokemon sprite image
     let img = document.getElementById("pokemonSprite");
     if (!img) {
         img = document.createElement("img");
@@ -19,6 +25,7 @@ async function fetchData() {
         document.body.appendChild(img);
     }
 
+    // Set image attributes
     img.src = src;
     img.style.display = "block";
     img.width = 200;         
@@ -30,6 +37,7 @@ async function fetchData() {
     const input = document.getElementById("pokemonName");
     if (input) input.value = apiName;
     
+    // Create or update Pokemon name label
     let label = document.getElementById("pokemonNameLabel");
     if (!label) {
         label = document.createElement("div");
@@ -40,6 +48,7 @@ async function fetchData() {
     }
     label.textContent = apiName.toUpperCase();
 
+    // Create or update Pokemon ID display
     let idDiv = document.getElementById("pokemonId");
     if (!idDiv) {
         idDiv = document.createElement("div");
@@ -50,6 +59,7 @@ async function fetchData() {
     }
     idDiv.textContent = `ID: ${apiId}`;
 
+    // Create or update base stats display
     let statsDiv = document.getElementById("pokemonStats");
     if (!statsDiv) {
         statsDiv = document.createElement("div");
@@ -65,16 +75,26 @@ async function fetchData() {
     });
 }
 
+// Make fetchData globally accessible
 window.fetchData = fetchData;
 
+// ====================================
+// MAIN APPLICATION LOGIC
+// ====================================
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // ====================================
+    // POKEDEX SEARCH FUNCTIONALITY
+    // ====================================
     const pokedexFetchBtn = document.getElementById('pokedexFetchBtn');
     pokedexFetchBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         fetchData();
     });
 
-    // Toggle intro -> menu
+    // ====================================
+    // INTRO SCREEN -> MENU TRANSITION
+    // ====================================
     const startBtn = document.getElementById('startBtn');
     const intro = document.querySelector('.intro');
     const menu = document.querySelector('.menu');
@@ -84,7 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menu?.classList.remove('hidden');
     });
 
-    // Menu buttons
+    // ====================================
+    // MENU BUTTONS & AREAS
+    // ====================================
     const playBtn = document.getElementById('play-btn') || document.getElementById('playBtn');
     const openPokedexBtn = document.getElementById('pokedex-btn') || document.getElementById('openPokedex');
     const exitBtn = document.getElementById('exit-btn') || document.getElementById('exitBtn');
@@ -94,12 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const pokedexArea = document.querySelector('.pokedex');
     const loadScreen = document.querySelector('.load');
 
-    // FIX #3: Move closePokedexBtn listener OUTSIDE to prevent multiple listeners
+    // FIX #3: Close Pokedex button listener moved OUTSIDE to prevent multiple event listeners
+    // This prevents memory leaks and duplicate firing when Pokedex is opened multiple times
     const closePokedexBtn = document.getElementById('closePokedexBtn');
     closePokedexBtn?.addEventListener('click', () => {
         pokedexArea?.classList.add('hidden');
         menu?.classList.remove('hidden');
 
+        // Remove Pokedex search results
         const content = pokedexArea?.querySelector('.pokedex-content');
         if (content) {
             content.remove();
@@ -110,19 +134,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('pokemonId')?.remove();
         document.getElementById('pokemonStats')?.remove();
     
+        // Clear search input
         const input = document.getElementById('pokemonName');
         if (input) input.value = '';
     });
 
+    // Play button - Navigate to game selection area
     playBtn?.addEventListener('click', () => {
         menu?.classList.add('hidden');
         gameArea?.classList.remove('hidden');
     });
 
+    // Exit button - Close window
     exitBtn?.addEventListener('click', () => {
         window.close();
     });
 
+    // Pokedex button - Show loading screen for 5 seconds then open Pokedex
     openPokedexBtn?.addEventListener('click', () => {
         menu?.classList.add('hidden');
         loadScreen?.classList.remove('hidden');
@@ -135,12 +163,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     });
 
+    // Back button - Return to menu from game area
     backbtn?.addEventListener('click', () => {
         gameArea?.classList.add('hidden');
         menu?.classList.remove('hidden');
     });
 
-    // Storymode and randomised buttons
+    // ====================================
+    // GAME MODE SELECTION (STORYMODE & RANDOMISED)
+    // ====================================
     const storymodeBtn = document.getElementById('storymodebtn');
     const randomisedBtn = document.getElementById('randomisedbtn');
     const backBtn = document.getElementById('backbtn');
@@ -148,23 +179,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const storymodemenu = document.querySelector('.storymodemenu');
     const randomisedArea = document.querySelector('.randomisedArea');
 
+    // Navigate to story mode menu
     storymodeBtn?.addEventListener('click', () => {
         gameArea?.classList.add('hidden');
         storymodemenu?.classList.remove('hidden');   
     });
 
+    // Navigate to randomised battle mode
     randomisedBtn?.addEventListener('click', () => {
         gameArea?.classList.add('hidden');
         randomisedArea?.classList.remove('hidden');
     });
 
+    // Back button - Return to menu from game modes
     backBtn?.addEventListener('click', () => {
         storymodemenu?.classList.add('hidden');
         randomisedArea?.classList.add('hidden');
         menu?.classList.remove('hidden');
     });
 
-    // Randomised mode
+    // ====================================
+    // RANDOMISED MODE NAVIGATION
+    // ====================================
     const backrandommenu = document.getElementById('backrandommenu');
 
     backrandommenu?.addEventListener('click', () => {
@@ -172,7 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gameArea?.classList.remove('hidden');
     });
 
-    // Storymode
+    // ====================================
+    // STORYMODE SETUP & NAVIGATION
+    // ====================================
     const introbtn = document.getElementById('introbtn');
     const skipbtn = document.getElementById('skipbtn');
     const backstorymenu = document.getElementById('backstorymenu');
@@ -185,21 +223,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const storymodeText = document.querySelector('.storymodeText');
     const storyintrobattletext = document.querySelector('.storyintrobattletext');
 
+    // Level button setup - Creates arrays of level buttons and content divs
     const levelNames = ['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
     const lvlBtns = levelNames.map((_, i) => document.getElementById(`lvl${i+1}btn`));
     const lvlContents = levelNames.map(name => document.getElementById(`level${name}`));
 
+    // Helper functions for showing/hiding levels
     const hideAllLevels = () => lvlContents.forEach(c => c?.classList.add('hidden'));
     const hideAllBtns = () => lvlBtns.forEach(b => b?.classList.add('hidden'));
     const showAllBtns = () => lvlBtns.forEach(b => b?.classList.remove('hidden'));
 
+    // Restart typing animation for story text
     function restartTyping(el) {
         if (!el) return;
         el.style.animation = 'none';
-        void el.offsetWidth;
+        void el.offsetWidth; // Force reflow to restart animation
         el.style.animation = null;
     }
 
+    // ====================================
+    // LEVEL CONFIGURATION
+    // ====================================
+    // Defines all 12 levels with opponents, team size requirements, and summary IDs
     const levelsConfig = [
         { id: 1, title: 'Pewter Gym', opponents: ['geodude','onix'], choose: 2, summaryId: 'battle1Summary', aftermathId: 'after1' },
         { id: 2, title: 'Violet Gym', opponents: ['pidgey','hoothoot','pidgeot'], choose: 3, summaryId: 'battle2Summary', aftermathId: 'after2' },
@@ -215,11 +260,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 12, title: 'Final Encounter', opponents: ['meowth','wobbuffet','inkay','woobat','seviper','mimikyu','koffing','chimecho','murkrow','wailmer','frillish','yamask','amoonguss','carnivine'], choose: 10, summaryId: 'battle12Summary', aftermathId: 'after12' }
     ];
 
+    // ====================================
+    // STORYMODE NAVIGATION BUTTONS
+    // ====================================
+    
+    // Intro button - Show story intro text
     introbtn?.addEventListener('click', () => {
         storymodemenu?.classList.add('hidden');
         storymodeArea?.classList.remove('hidden');
     });
 
+    // Skip button - Jump directly to level selection
     skipbtn?.addEventListener('click', () => {
         storymodemenu?.classList.add('hidden');
         lvlarea?.classList.remove('hidden');
@@ -227,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showAllBtns();
     });
 
+    // Back from level area to story menu
     backskipmenu?.addEventListener('click', () => {
         lvlarea?.classList.add('hidden');
         hideAllLevels();
@@ -234,11 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
         storymodemenu?.classList.remove('hidden');
     });
 
+    // Back from story intro to story menu
     backbtnstorymode?.addEventListener('click', () => {
         storymodeArea?.classList.add('hidden');
         storymodemenu?.classList.remove('hidden');
     });
 
+    // Back from story menu to game area
     backstorymenu?.addEventListener('click', () => {
         storymodemenu?.classList.add('hidden');
         storymodeArea?.classList.add('hidden');
@@ -248,15 +302,21 @@ document.addEventListener('DOMContentLoaded', () => {
         gameArea?.classList.remove('hidden');
     });
 
+    // Next button - Advance story text
     nextbtnstorymode?.addEventListener('click', () => {
         storymodeText?.classList.add('hidden');
         storyintrobattletext?.classList.remove('hidden');
         restartTyping(storyintrobattletext);
     });
 
-    // Level buttons
+    // ====================================
+    // LEVEL SELECTION & BATTLE SYSTEM
+    // ====================================
+    
+    // Add click handler to each level button
     lvlBtns.forEach((btn, i) => {
         btn?.addEventListener('click', () => {
+            // Hide level selection and show selected level
             lvlarea?.classList.add('hidden');
             hideAllBtns();
             hideAllLevels();
@@ -265,9 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetDiv = lvlContents[i];
             targetDiv?.classList.remove('hidden');
 
+            // Remove any existing info boxes
             let oldBox = targetDiv.querySelector('.infobox');
             if (oldBox) oldBox.remove();
 
+            // ====================================
+            // LEVEL INTRO INFO BOX
+            // ====================================
+            // Shows level title, opponents, and team size requirement
             const infoBox = document.createElement('div');
             infoBox.classList.add('infobox');
             infoBox.innerHTML = `
@@ -280,9 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             targetDiv.appendChild(infoBox);
 
+            // ====================================
+            // POKEMON SELECTION SCREEN
+            // ====================================
             infoBox.querySelector('.infonext-btn')?.addEventListener('click', () => {
                 infoBox.remove();
             
+                // Create Pokemon selection interface
                 const selectBox = document.createElement('div');
                 selectBox.classList.add('infobox');
                 selectBox.innerHTML = `
@@ -306,9 +375,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const teamList = selectBox.querySelector('#teamList');
                 const readyBtn = selectBox.querySelector('#readyBtn');
             
-                const team = [];
+                const team = []; // Stores selected Pokemon
                 const maxTeamSize = currentLevel.choose;
             
+                // ====================================
+                // POKEMON SEARCH FUNCTION
+                // ====================================
                 async function searchPokemon() {
                     const name = searchInput.value.trim().toLowerCase();
                     if (!name) return;
@@ -317,6 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!res.ok) throw new Error('Not found');
                         const data = await res.json();
                         
+                        // Build search result display
                         const types = data.types.map(t => t.type.name).join(', ');
                         const stats = data.stats.map(s => `${s.stat.name}: ${s.base_stat}`).join('<br>');
                         
@@ -328,16 +401,20 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button id="addBtn">Add to Team</button>
                         `;
             
+                        // Add Pokemon to team button
                         const addBtn = searchResult.querySelector('#addBtn');
                         addBtn.onclick = () => {
+                            // Check team size limit
                             if (team.length >= maxTeamSize) {
                                 alert(`You can only choose ${maxTeamSize} Pokémon for this level!`);
                                 return;
                             }
+                            // Check for duplicates
                             if (team.find(p => p.id === data.id)) {
                                 alert('You already added this Pokémon!');
                                 return;
                             }
+                            // Add to team and update display
                             team.push({ id: data.id, name: data.name, sprite: data.sprites.front_default });
                             renderTeam();
                         };
@@ -346,6 +423,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             
+                // ====================================
+                // RENDER TEAM FUNCTION
+                // ====================================
+                // Updates the display of selected Pokemon with delete buttons
                 function renderTeam() {
                     teamList.innerHTML = team.map(p => `
                         <li>
@@ -355,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </li>
                     `).join('');
             
+                    // Add delete functionality to each Pokemon
                     teamList.querySelectorAll('.deleteBtn').forEach(btn => {
                         btn.addEventListener('click', () => {
                             const id = parseInt(btn.dataset.id);
@@ -364,6 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     });
             
+                    // Show Ready button when team is full
                     if (team.length === maxTeamSize) {
                         readyBtn.classList.remove('hidden');
                     } else {
@@ -371,22 +454,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             
+                // Search button click handler
                 searchBtn.addEventListener('click', searchPokemon);
+                
+                // Search on Enter key press
                 searchInput.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') searchPokemon();
                 });
             
-                // FIX #2: Remove nested listener and alert
+                // ====================================
+                // BATTLE START - READY BUTTON
+                // ====================================
+                // FIX #2: Removed nested listener and alert to fix battle not starting
                 readyBtn.addEventListener('click', async () => {
+                    // Validate team size
                     if (team.length !== maxTeamSize) {
                         alert(`Please choose ${maxTeamSize} Pokémon first.`);
                         return;
                     }
   
+                    // Remove selection UI and create battle interface
                     selectBox.remove();
                     const battleBox = document.createElement('div');
                     battleBox.classList.add('infobox');
-                    // FIX #1: Added missing < before div
+                    
+                    // FIX #1: Added missing < before div to fix HTML rendering
                     battleBox.innerHTML = `
                         <h2>Battle: ${currentLevel.title}</h2>
                         <div id="battle-area">
@@ -402,20 +494,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     targetDiv.appendChild(battleBox);
   
+                    // ====================================
+                    // BATTLE LOG FUNCTION
+                    // ====================================
                     const log = (txt) => {
                         const el = battleBox.querySelector('#battle-log');
                         const p = document.createElement('div');
                         p.innerHTML = txt;
                         el.appendChild(p);
-                        el.scrollTop = el.scrollHeight;
+                        el.scrollTop = el.scrollHeight; // Auto-scroll to bottom
                     };
   
+                    // ====================================
+                    // FETCH FULL POKEMON DATA
+                    // ====================================
                     async function fetchFullPokemon(nameOrId) {
                         const r = await fetch(`https://pokeapi.co/api/v2/pokemon/${nameOrId}`);
                         if (!r.ok) throw new Error('fetch failed');
                         return r.json();
                     }
   
+                    // ====================================
+                    // BUILD PLAYER TEAM WITH FULL DATA
+                    // ====================================
                     const playerTeam = [];
                     for (const p of team) {
                         try {
@@ -426,13 +527,24 @@ document.addEventListener('DOMContentLoaded', () => {
                                 sprite: data.sprites.front_default,
                                 stats: Object.fromEntries(data.stats.map(s => [s.stat.name, s.base_stat])),
                                 types: data.types.map(t => t.type.name),
-                                moves: data.moves.slice(0, 6).map(m => m.move.url)
+                                moves: data.moves.slice(0, 6).map(m => m.move.url) // Get first 6 moves
                             });
                         } catch (e) {
-                            playerTeam.push({ id: p.id, name: p.name, sprite: p.sprite, stats: { hp: 20, attack: 10, defense: 10, 'special-attack':10, 'special-defense':10, speed:10 }, types: [], moves: [] });
+                            // Fallback with default stats if fetch fails
+                            playerTeam.push({ 
+                                id: p.id, 
+                                name: p.name, 
+                                sprite: p.sprite, 
+                                stats: { hp: 20, attack: 10, defense: 10, 'special-attack':10, 'special-defense':10, speed:10 }, 
+                                types: [], 
+                                moves: [] 
+                            });
                         }
                     }
   
+                    // ====================================
+                    // BUILD OPPONENT TEAM WITH FULL DATA
+                    // ====================================
                     const opponentsData = [];
                     for (const name of currentLevel.opponents) {
                         try {
@@ -446,15 +558,27 @@ document.addEventListener('DOMContentLoaded', () => {
                                 moves: d.moves.slice(0,6).map(m => m.move.url)
                             });
                         } catch (e) {
-                            opponentsData.push({ id: null, name, sprite: '', stats: { hp: 20, attack: 10, defense: 10, 'special-attack':10, 'special-defense':10, speed:10 }, types: [], moves: [] });
+                            // Fallback with default stats if fetch fails
+                            opponentsData.push({ 
+                                id: null, 
+                                name, 
+                                sprite: '', 
+                                stats: { hp: 20, attack: 10, defense: 10, 'special-attack':10, 'special-defense':10, speed:10 }, 
+                                types: [], 
+                                moves: [] 
+                            });
                         }
                     }
   
+                    // ====================================
+                    // CREATE BATTLE COMBATANTS
+                    // ====================================
+                    // Converts Pokemon data to battle-ready format with HP pools
                     const makeCombatant = (obj) => {
                         const hpBase = (obj.stats.hp || 20);
                         return {
                             ...obj,
-                            hpMax: Math.max(10, Math.round(hpBase * 2)),
+                            hpMax: Math.max(10, Math.round(hpBase * 2)), // Scale HP for battle
                             hp: Math.max(10, Math.round(hpBase * 2)),
                             atk: obj.stats.attack || 10,
                             def: obj.stats.defense || 10,
@@ -471,6 +595,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const oppArea = battleBox.querySelector('#opponents-area');
                     const playerArea = battleBox.querySelector('#player-area');
   
+                    // ====================================
+                    // RENDER BATTLE PANELS
+                    // ====================================
+                    // Displays both teams with sprites and HP bars
                     function renderPanels() {
                         oppArea.innerHTML = '<h3>Opponents</h3>' + opponentCombatants.map((o, idx) => `
                             <div style="display:flex;align-items:center;gap:8px">
@@ -488,10 +616,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
                     renderPanels();
   
-                    let currentPlayerIndex = 0;
-                    let currentOpponentIndex = 0;
-                    let playerTurn = true;
+                    // ====================================
+                    // BATTLE STATE VARIABLES
+                    // ====================================
+                    let currentPlayerIndex = 0; // Currently active player Pokemon
+                    let currentOpponentIndex = 0; // Currently active opponent Pokemon
+                    let playerTurn = true; // Track whose turn it is
   
+                    // ====================================
+                    // MOVE CACHE & FETCH
+                    // ====================================
+                    // Cache to avoid refetching the same move data
                     const moveCache = new Map();
                     async function getMove(url) {
                         if (!url) return { name: 'Tackle', power: 40, type: 'normal', damage_class: {name:'physical'} };
@@ -499,7 +634,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         try {
                             const r = await fetch(url);
                             const j = await r.json();
-                            const mv = { name: j.name, power: j.power || 40, type: j.type.name, damage_class: j.damage_class };
+                            const mv = { 
+                                name: j.name, 
+                                power: j.power || 40, 
+                                type: j.type.name, 
+                                damage_class: j.damage_class 
+                            };
                             moveCache.set(url, mv);
                             return mv;
                         } catch {
@@ -507,17 +647,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
   
+                    // ====================================
+                    // DAMAGE CALCULATION
+                    // ====================================
+                    // Simplified Pokemon battle damage formula
                     function calcDamage(attacker, defender, move) {
                         const level = 5;
                         const power = move.power || 40;
+                        // Use special attack/defense for special moves, physical for physical
                         const attackStat = (move.damage_class?.name === 'special') ? attacker.spa : attacker.atk;
                         const defenseStat = (move.damage_class?.name === 'special') ? defender.spd : defender.def;
                         const base = (((2 * level) / 5 + 2) * power * (attackStat / Math.max(1, defenseStat))) / 50 + 2;
-                        const stab = attacker.types.includes(move.type) ? 1.5 : 1;
-                        const randomFactor = (Math.random() * 0.15) + 0.85;
+                        const stab = attacker.types.includes(move.type) ? 1.5 : 1; // Same Type Attack Bonus
+                        const randomFactor = (Math.random() * 0.15) + 0.85; // Random variation
                         return Math.max(1, Math.round(base * stab * randomFactor));
                     }
   
+                    // ====================================
+                    // UPDATE HP DISPLAYS
+                    // ====================================
                     function updateHPDisplays() {
                         playerCombatants.forEach((p, idx) => {
                             const e = battleBox.querySelector(`#ply-hp-${idx}`);
@@ -529,6 +677,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
   
+                    // ====================================
+                    // CHECK BATTLE END CONDITIONS
+                    // ====================================
                     function checkBattleEnd() {
                         const allOppDefeated = opponentCombatants.every(o => o.hp <= 0);
                         const allPlayersFainted = playerCombatants.every(p => p.hp <= 0);
@@ -545,16 +696,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         return false;
                     }
   
+                    // ====================================
+                    // OPPONENT ACTION (AI TURN)
+                    // ====================================
                     async function opponentAct() {
                         const opp = opponentCombatants[currentOpponentIndex];
                         if (!opp || opp.hp <= 0) return;
+                        
+                        // Pick random move from opponent's moveset
                         const moveUrl = opp.moveUrls[Math.floor(Math.random() * Math.max(1, opp.moveUrls.length))] || null;
                         const move = await getMove(moveUrl);
+                        
+                        // Target current player Pokemon
                         const target = playerCombatants[currentPlayerIndex];
                         const damage = calcDamage(opp, target, move);
                         target.hp = Math.max(0, target.hp - damage);
+                        
                         log(`${opp.name.toUpperCase()} used <strong>${move.name}</strong> and dealt ${damage} damage to ${target.name.toUpperCase()}!`);
                         updateHPDisplays();
+                        
+                        // Auto-switch to next alive Pokemon if current one fainted
                         if (target.hp <= 0) {
                             log(`${target.name.toUpperCase()} fainted!`);
                             const nextAlive = playerCombatants.findIndex(p => p.hp > 0);
@@ -562,10 +723,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
   
+                    // ====================================
+                    // SHOW FIGHT OPTIONS (PLAYER MOVES)
+                    // ====================================
                     async function showFightOptions() {
+                        // Remove any existing move panel
                         let movesPanel = battleBox.querySelector('.moves-panel');
                         if (movesPanel) movesPanel.remove();
   
+                        // Create new move selection panel
                         movesPanel = document.createElement('div');
                         movesPanel.classList.add('moves-panel');
                         movesPanel.style.marginTop = '8px';
@@ -573,9 +739,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         battleBox.appendChild(movesPanel);
   
                         const player = playerCombatants[currentPlayerIndex];
-                        const moveUrls = player.moveUrls.slice(0,4);
+                        const moveUrls = player.moveUrls.slice(0,4); // Get up to 4 moves
                         const moveDetails = await Promise.all(moveUrls.map(getMove));
                         
+                        // Create button for each move
                         moveDetails.forEach((mv) => {
                             const b = document.createElement('button');
                             b.textContent = `${mv.name} (${mv.power || '?'})`;
@@ -587,14 +754,18 @@ document.addEventListener('DOMContentLoaded', () => {
                                     movesPanel.remove();
                                     return;
                                 }
+                                
+                                // Execute player's move
                                 const damage = calcDamage(player, opp, mv);
                                 opp.hp = Math.max(0, opp.hp - damage);
                                 log(`${player.name.toUpperCase()} used <strong>${mv.name}</strong> and did ${damage} damage to ${opp.name.toUpperCase()}!`);
                                 updateHPDisplays();
                                 movesPanel.remove();
   
+                                // Handle opponent fainting
                                 if (opp.hp <= 0) {
                                     log(`${opp.name.toUpperCase()} fainted!`);
+                                    // Switch to next opponent
                                     const nextOpp = opponentCombatants.findIndex(o => o.hp > 0);
                                     if (nextOpp !== -1) {
                                         currentOpponentIndex = nextOpp;
@@ -602,6 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 }
   
+                                // Check if battle ended, otherwise opponent's turn
                                 if (!checkBattleEnd()) {
                                     await opponentAct();
                                     if (!checkBattleEnd()) {
@@ -612,6 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             movesPanel.appendChild(b);
                         });
   
+                        // Fallback: If Pokemon has no moves, provide Tackle
                         if (moveDetails.length === 0) {
                             const b = document.createElement('button');
                             b.textContent = 'Tackle';
@@ -632,6 +805,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
   
+                    // ====================================
+                    // SHOW SWITCH OPTIONS (CHANGE POKEMON)
+                    // ====================================
                     function showSwitchOptions() {
                         const movesPanel = battleBox.querySelector('.moves-panel');
                         if (movesPanel) movesPanel.remove();
@@ -640,11 +816,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         panel.classList.add('switch-panel');
                         panel.style.marginTop = '8px';
                         panel.innerHTML = '<strong>Switch Pokémon:</strong><br>';
+                        
+                        // Create button for each Pokemon in player's team
                         playerCombatants.forEach((p, idx) => {
                             const b = document.createElement('button');
                             b.textContent = `${p.name.toUpperCase()} (HP: ${p.hp}/${p.hpMax})`;
                             b.style.margin = '4px';
-                            b.disabled = p.hp <= 0 || idx === currentPlayerIndex;
+                            b.disabled = p.hp <= 0 || idx === currentPlayerIndex; // Can't switch to fainted or current Pokemon
                             b.addEventListener('click', () => {
                                 currentPlayerIndex = idx;
                                 log(`You switched to ${playerCombatants[currentPlayerIndex].name.toUpperCase()}.`);
@@ -655,15 +833,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         battleBox.appendChild(panel);
                     }
   
+                    // ====================================
+                    // RUN FROM BATTLE (FORFEIT)
+                    // ====================================
                     function doRun() {
                         log('You fled the battle. You forfeit this battle.');
                         onBattleEnd(false, { ran: true });
                     }
   
+                    // ====================================
+                    // BATTLE END HANDLER
+                    // ====================================
                     function onBattleEnd(victory, opts = {}) {
+                        // Remove battle controls
                         const controls = battleBox.querySelector('#battle-controls');
                         if (controls) controls.remove();
                         
+                        // Create end-of-battle summary panel
                         const summaryPanel = document.createElement('div');
                         summaryPanel.style.marginTop = '10px';
                         summaryPanel.innerHTML = `
@@ -675,13 +861,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         `;
                         battleBox.appendChild(summaryPanel);
   
+                        // Leave button - Return to level selection
                         summaryPanel.querySelector('#leaveBtn')?.addEventListener('click', () => {
                             battleBox.remove();
                             lvlarea?.classList.remove('hidden');
                             showAllBtns();
                         });
   
+                        // Show Summary button - Display story summary and aftermath
                         summaryPanel.querySelector('#showSummaryBtn')?.addEventListener('click', () => {
+                            // Try to find summary elements in HTML
                             const summaryEl = document.getElementById(`${currentLevel.id}.BattleSummary`) || document.getElementById(currentLevel.summaryId);
                             const aftermathEl = document.getElementById(`${currentLevel.id}.Aftermath`) || document.getElementById(currentLevel.aftermathId);
   
@@ -696,20 +885,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
   
+                    // ====================================
+                    // WIRE BATTLE CONTROL BUTTONS
+                    // ====================================
+                    
+                    // Fight button - Show move selection
                     battleBox.querySelector('#fightBtn')?.addEventListener('click', () => {
                         if (!playerTurn) return;
                         showFightOptions();
                         playerTurn = false;
                     });
+                    
+                    // Switch button - Show Pokemon switching UI
                     battleBox.querySelector('#switchBtn')?.addEventListener('click', showSwitchOptions);
+                    
+                    // Run button - Forfeit battle
                     battleBox.querySelector('#runBtn')?.addEventListener('click', doRun);
   
+                    // ====================================
+                    // INITIAL BATTLE LOG MESSAGES
+                    // ====================================
                     log(`Battle started vs ${currentLevel.opponents.join(', ')}. Choose your actions.`);
                     log(`You have ${playerCombatants.length} Pokémon. First up: ${playerCombatants[currentPlayerIndex].name.toUpperCase()}`);
                     log(`Opponent: ${opponentCombatants[currentOpponentIndex].name.toUpperCase()}`);
                 });
             });
 
+            // ====================================
+            // BACK TO LEVEL AREA BUTTON
+            // ====================================
             const backlvlareabtn = targetDiv.querySelector('.backlvlareabtn');
             backlvlareabtn?.addEventListener('click', () => {
                 targetDiv.classList.add('hidden');
