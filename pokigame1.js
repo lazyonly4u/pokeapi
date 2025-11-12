@@ -465,33 +465,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 // ====================================
                 // BATTLE START - READY BUTTON
                 // ====================================
-                // FIX #2: Removed nested listener and alert to fix battle not starting
                 readyBtn.addEventListener('click', async () => {
                     // Validate team size
                     if (team.length !== maxTeamSize) {
                         alert(`Please choose ${maxTeamSize} Pokémon first.`);
                         return;
                     }
-  
-                    // Remove selection UI and create battle interface
+
+                    // Remove the selection UI
                     selectBox.remove();
+
+                    // Remove selection UI and create battle interface
                     const battleBox = document.createElement('div');
                     battleBox.classList.add('infobox');
                     
-                    // FIX #1: Added missing < before div to fix HTML rendering
                     battleBox.innerHTML = `
                         <h2>Battle: ${currentLevel.title}</h2>
-                        <div id="battle-area">
-                            <div id="opponents-area"><h3>Opponents</h3></div>
-                            <div id="player-area"><h3>Your Team</h3></div>
-                            <div id="battle-log" style="height:120px; overflow:auto; text-align:left; padding:8px; background:rgba(0,0,0,0.6); border-radius:8px; margin-top:8px;"></div>
-                            <div id="battle-controls" style="margin-top:8px;">
+                            <div id="battle-area">
+                            <div id="opponents-area">
+                                <h3 id="opponents-title">Opponents</h3>
+                                <div class="opponent" id="opponent1"><img src="opponent1.png" alt="Opponent 1"></div>
+                                <div class="opponent" id="opponent2"><img src="opponent2.png" alt="Opponent 2"></div>
+                            </div>
+
+                            <div id="player-area">
+                                <h3 id="player-title">Your Team</h3>
+                                <div class="player-pokemon" id="player1"><img src="player1.png" alt="Player 1"></div>
+                                <div class="player-pokemon" id="player2"><img src="player2.png" alt="Player 2"></div>
+                            </div>
+
+                            <div id="battle-log"></div>
+
+                            <div id="battle-controls">
                                 <button id="fightBtn">Fight</button>
                                 <button id="switchBtn">Pokémon</button>
                                 <button id="runBtn">Run</button>
                             </div>
                         </div>
                     `;
+
                     targetDiv.appendChild(battleBox);
   
                     // ====================================

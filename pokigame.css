@@ -371,92 +371,272 @@
   cursor: pointer;
 }
 
-/*info box*/
+
+/* Info box container */
 .infobox {
-  position: absolute;
+  position: absolute;  
   bottom: 5px;
   left: 32.1%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); 
   width: 32.1%;
-  height: 22%;
+  height: 22%;          
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   border: 2px solid #ffcb05;
   border-radius: 16px;
-  padding: 1px;
+  padding: 1px;           
   text-align: center;
   z-index: 5; 
   font-family: 'Poppins', sans-serif;
 }
-
+/* info box buttons container */
 .info-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+  display: flex;         
+  justify-content: center; 
+  gap: 10px;             
+  margin-top: 10px;      
 }
 
-.infonext-btn{
+/* Next button styling */
+.infonext-btn {
   background-color: #ffcb05;
   border: none;
-  position: absolute;
-  top: auto;
-  left: auto;
+  position: absolute;     
+  top: auto;            
+  left: auto;            
   border-radius: 8px;
   padding: 8px 20px;
   cursor: pointer;
   font-weight: bold;
 }
-.infonext-btn{  top: 75%; left: 84%;}
 
-.infonext-btn:hover{
-  background-color: #f4b400;
-}
-.infobox {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 400px;
-  margin: 20px auto;
-  text-align: center;
+/* Overwrites previous top/left */
+.infonext-btn {  
+  top: 75%;            
+  left: 84%;             
 }
 
+.infonext-btn:hover {
+  background-color: #f4b400; 
+}
+
+/* Info box title */
+.infobox h2 {
+  position: absolute;    
+  top: -3px;          
+  left: 10px;
+  cursor: move;       
+}
+
+/* Pokémon search input */
 .pokedex-search input {
   padding: 5px;
-  width: 70%;
+  width: 7%;            
+  position: absolute;
+  bottom: 73%;          
+  left: 53%;
   margin-right: 5px;
 }
 
+/* Search button */
 .pokedex-search button {
   padding: 5px 10px;
+  position: absolute;
+  bottom: 73%;
+  left: 63%;             
 }
 
+/* Pokémon image in search results */
 #searchResult img {
   width: 120px;
   margin: 10px 0;
+  position: absolute;   
+  top: 30px;
+  left: -0px;            
 }
 
+/* All paragraphs in search results */
+#searchResult p {
+  position: absolute;     
+}
+
+/* Pokémon name inside first paragraph */
+#searchResult p:nth-of-type(1) strong {
+  position: absolute;
+  top:1px;
+  left: -120px;         
+}
+
+/* Name + level paragraph */
+#searchResult p:nth-of-type(1) {
+  top: 50px;
+  left: 250px;          
+}
+
+/* Type paragraph */
+#searchResult p:nth-of-type(2) {
+  top: 80px;
+  left: 150px;
+}
+
+/* Stats paragraph */
+#searchResult p:nth-of-type(3) {
+  top:38px;
+  left: 300px;
+}
+
+/* Add button */
+#addBtn {
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 126px;         
+  left: 390px;
+}
+
+/* Info box h3 inside infobox */
+.infobox h3 {
+  position: absolute;
+  top: -500px;         
+  left: -200px;
+  pointer-events: none;
+}
+
+/* Team list container */
 #teamList {
   list-style: none;
   padding: 0;
 }
 
+/* Each team list item */
 #teamList li {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   margin-bottom: 5px;
+  position: relative;
+  top: -450px;           
+  left: -400px;         
 }
 
+/* Ready button */
+.readyBtn {
+  position: fixed;         
+  bottom: 200px;
+  right: 20px;
+}
+
+/* Hidden class for toggling */
 .hidden {
   display: none;
 }
 
+/* Fade-out transition */
 .fade-out {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
+
+/*battle*/
+.infobox#battle-container {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 600px;
+  margin: 20px auto;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#battle-area {
+  position: relative; 
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headings */
+#battle-area #opponents-area h3,
+#battle-area h3#opponents-title {
+  position: absolute ; 
+  top: 20px ;
+  left: 90px;
+  margin: 0;
+  pointer-events: auto;
+}
+
+#battle-area #player-area h3,
+#battle-area h3#player-title {
+  position: absolute ;
+  top: 20px ; 
+  right: 90px ;
+  margin: 0;
+  pointer-events: auto;
+}
+
+/* Opponent Pokémon */
+#battle-area .opponent,
+#opponents-area > div:not(h3) {
+  position: absolute;
+}
+
+#battle-area .opponent#opponent1,
+#opponents-area > div:nth-child(2) { 
+  top: 60px; 
+  left: 50px; 
+}
+
+#battle-area .opponent#opponent2,
+#opponents-area > div:nth-child(3) { 
+  top: 120px; 
+  left: 50px; 
+}
+
+/* Player Pokémon */
+#battle-area .player-pokemon,
+#player-area > div:not(h3) {
+  position: absolute;
+}
+
+#battle-area .player-pokemon#player1,
+#player-area > div:nth-child(2) { 
+  top: 60px; 
+  right: 50px;
+}
+
+#battle-area .player-pokemon#player2,
+#player-area > div:nth-child(3) { 
+  top: 120px; 
+  right: 50px;
+}
+
+/* Battle log */
+#battle-log {
+  position: absolute;
+  bottom: 80px;
+  left: px;
+  right: 50px;
+  height: 150px;
+  border: 2px solid #ffcb05;
+  padding: 10px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  overflow-y: auto;
+}
+
+/* Battle controls */
+#battle-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+
 
 /*randomised mode*/
 
