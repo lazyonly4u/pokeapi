@@ -362,7 +362,16 @@
 .pokemonbtn{top: 74.8%; left:49.4%;}
 .heartbtn {top: 74.8%; left: 66.7%;}
 
+.backlvlareabtn {
+  position: relative;
+  top: 5%;
+  left: 1%;
+  width: 130px;
+  z-index: 3;
+  cursor: pointer;
+}
 
+/*info box*/
 .infobox {
   position: absolute;
   bottom: 5px;
@@ -403,16 +412,46 @@
 .infonext-btn:hover{
   background-color: #f4b400;
 }
-
-.backlvlareabtn {
-  position: relative;
-  top: 5%;
-  left: 1%;
-  width: 130px;
-  z-index: 3;
-  cursor: pointer;
+.infobox {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
 }
 
+.pokedex-search input {
+  padding: 5px;
+  width: 70%;
+  margin-right: 5px;
+}
+
+.pokedex-search button {
+  padding: 5px 10px;
+}
+
+#searchResult img {
+  width: 120px;
+  margin: 10px 0;
+}
+
+#teamList {
+  list-style: none;
+  padding: 0;
+}
+
+#teamList li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
+}
 
 /*randomised mode*/
 
