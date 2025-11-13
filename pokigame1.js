@@ -946,7 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             summaryPanel.classList.add('infobox');
                             summaryPanel.style.textAlign = 'center';
                             summaryPanel.innerHTML = `
-                                <h2 style="color:${victory ? '#4CAF50' : '#F44336'};">${victory ? 'VICTORY!' : (opts.ran ? '🏃 Fled' : '💀 DEFEAT')}</h2>
+                                <h2 style="color:${victory ? '#4CAF50' : '#F44336'};">${victory ? 'VICTORY!' : (opts.ran ? 'Fled' : 'DEFEAT')}</h2>
                                 <p style="margin: 15px 0;">${victory ? 'Congratulations! You defeated all opponents!' : (opts.ran ? 'You ran from the battle.' : 'Your team was defeated.')}</p>
                                 <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
                                     <button id="showSummaryBtn">Show Level Summary</button>
